@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import HelloWorld from './components/HelloWorld.vue'
 import PS4Games from './PS4Games.vue'
+import Todos from './Todos.vue'
 
 //Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -10,7 +11,8 @@ Vue.use(VueRouter)
 const routes = [
   {path: '/', component: App, name: "home", meta:{title: "Home"}},
   {path: '/about', component: HelloWorld, name: "about", meta:{title: "About"}},
-  {path: '/ps4games', component: PS4Games, name: "ps4", meta:{title: "PS4Games"}}
+  {path: '/ps4games', component: PS4Games, name: "ps4", meta:{title: "PS4Games"}},
+  {path: '/todos', component: Todos, name: "todos", meta:{title: "Todos"}}
 ]
 const router = new VueRouter({
   routes: routes
