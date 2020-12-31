@@ -8,7 +8,11 @@
             <div class="container" style="margin-top: 15px; margin-bottom: 15px;">
                 <div class="row">
                 <div class="col-lg-12">
-                    <TodoItem v-for="todo in todos" v-bind:key="todo.id" :completed="todo.completed">
+                    <TodoStat title="All Todos">{{allTodosCount}}</TodoStat>
+                    <TodoStat title="Completed Todos">{{completedCount}}</TodoStat>
+                    <TodoStat title="Pending Todos">{{pendingTodosCount}}</TodoStat>
+                    <TodoItem v-for="(todo, index) in todos" v-bind:key="todo.id" 
+                        :completed="todo.completed" @toggle="toggle(index)">
                         {{todo.title}}
                     </TodoItem>
                 </div>
@@ -25,13 +29,30 @@
 <script>
 import axios from 'axios';
 import TodoItem from './components/TodoItem.vue';
+import TodoStat from './components/TodoStat.vue';
 
 export default {
-  components: { TodoItem },
+  components: { TodoItem, TodoStat },
     name: "Todos",
     data: function(){
         return {
             todos: []
+        }
+    },
+    computed: {
+        allTodosCount(){
+            return this.todos.length
+        },
+        completedCount(){
+            return this.todos.filter(function(todo){return todo.completed}).length
+        },
+        pendingTodosCount(){
+            return this.todos.filter(function(todo){return !todo.completed}).length
+        }
+    },
+    methods:{
+        toggle(index){
+            this.todos[index].completed = !this.todos[index].completed
         }
     },
     mounted() {
