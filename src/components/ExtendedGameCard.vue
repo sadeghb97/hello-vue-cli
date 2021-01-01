@@ -44,6 +44,10 @@ export default {
             return this.$slots.store != null && this.$slots.store[0].text !== ""
         },
         hasLike(){
+            //har bar ruye card click shode va meghdare like an dar store ziad shavad
+            //yek bar in method run mishavad va agar tedade like bish az sefr bashad meghdare an
+            //dar cart namayesh miyabad. dar surate daryafte tedade like az tarighe slot
+            //pas az click va afzayeshe meghdare like nemitavanestim meghdare like ra dar cart update konim
             return this.likes != null && this.likes > 0
         },
         getLikes(){
