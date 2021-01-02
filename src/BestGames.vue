@@ -41,6 +41,7 @@ import axios from 'axios';
 import store from './store';
 import ExtendedGameCard from "./components/ExtendedGameCard.vue"
 import NumberField from "./components/NumberField.vue"
+import { configs } from './configs'
 
 function fetchGame(element){
     var hasGenre = element.genres !== null && element.genres instanceof Array && 
@@ -65,7 +66,7 @@ function fetchGame(element){
 }
 
 function downloadPage(store, start, to, page){
-    var url = "https://api.rawg.io/api/games?dates=" + start + 
+    var url = `${configs.RAWG_API_BASE_URL}games?dates=` + start + 
         "-01-01," + to + "-12-31&ordering=-rating&page_size=40&page=" + 
         page;
 
